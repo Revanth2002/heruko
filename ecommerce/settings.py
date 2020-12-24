@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,12 +79,12 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3'
         #'NAME': 'db.sqlite3',
 
-        "ENGINE" : 'djongo',
-        'NAME':'shopzap'
+        #"ENGINE" : 'djongo',
+        #'NAME':'shopzap'
     }
 }
 
@@ -131,5 +132,8 @@ MEDIA_URL='/images/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/images')
+# Activate Django-Heroku.
+django_heroku.settings(locals())
